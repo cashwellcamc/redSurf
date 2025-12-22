@@ -8,11 +8,6 @@ function Services() {
       icon: '🎯'
     },
     {
-      title: 'Cloud Solutions',
-      description: 'Scalable infrastructure and migration services for modern businesses.',
-      icon: '☁️'
-    },
-    {
       title: 'Data Analytics',
       description: 'Transform raw data into actionable insights and competitive advantages.',
       icon: '📊'

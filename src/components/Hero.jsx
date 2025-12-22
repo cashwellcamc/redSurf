@@ -19,7 +19,11 @@ function Hero() {
           </div>
         </div>
         <div className="hero-visual">
-          <div className="wave-animation"></div>
+          <div className="wave-animation">
+            <div className="wave one"></div>
+            <div className="wave two"></div>
+            <div className="wave three"></div>
+          </div>
         </div>
       </div>
       <div className="scroll-indicator">
