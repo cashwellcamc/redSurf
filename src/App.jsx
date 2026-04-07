@@ -4,10 +4,11 @@ function App() {
       <nav>
         <a href="#" className="logo">
           <div className="logo-mark">
-            <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 14 Q7 8 15 4" stroke="#c0392b" strokeWidth="2.5" strokeLinecap="round"/>
-              <path d="M3 10 Q8 6 15 4" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" strokeLinecap="round"/>
-              <circle cx="15" cy="4" r="2" fill="#c0392b"/>
+            <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+              <circle cx="14" cy="32" r="3" fill="#c0392b"/>
+              <line x1="17" y1="32" x2="30" y2="32" stroke="#0f1f35" strokeWidth="1.5"/>
+              <polyline points="30,32 38,20 46,32 50,32" stroke="#0f1f35" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              <circle cx="50" cy="32" r="3" fill="#0f1f35"/>
             </svg>
           </div>
           <span className="logo-wordmark"><em>Red</em>Surf Digital</span>
