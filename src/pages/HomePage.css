@@ -1,0 +1,225 @@
+/* ── Home: full-screen hero with life raft nav ─────────────────────────── */
+
+.home {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0a1520;
+}
+
+/* ── Hero image ─────────────────────────────────────────────────────────── */
+
+.home-hero {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.home-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(0px) scale(1);
+  transform-origin: center;
+  animation: hero-blur 2.4s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+  will-change: filter, transform;
+}
+
+@keyframes hero-blur {
+  0%   { filter: blur(0px);   transform: scale(1); }
+  100% { filter: blur(16px);  transform: scale(1.06); }
+}
+
+/* Dark overlay — fades in as blur progresses */
+.home-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 18, 32, 0.45) 0%,
+    rgba(8, 18, 32, 0.62) 50%,
+    rgba(8, 18, 32, 0.72) 100%
+  );
+  animation: overlay-in 2.8s ease forwards;
+  opacity: 0;
+}
+
+@keyframes overlay-in {
+  0%   { opacity: 0; }
+  40%  { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* ── Content layer ──────────────────────────────────────────────────────── */
+
+.home-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 900px;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: content-rise 0.9s cubic-bezier(0.2, 0.8, 0.4, 1) 1.6s both;
+}
+
+@keyframes content-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.home-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+/* ── Wordmark ───────────────────────────────────────────────────────────── */
+
+.home-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2.6rem, 7vw, 5.2rem);
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+}
+
+.home-sub {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: clamp(0.9rem, 2vw, 1.15rem);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.72);
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Services strip ─────────────────────────────────────────────────────── */
+
+.home-services {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem 0.6rem;
+  margin-bottom: 2.8rem;
+}
+
+.home-service-tag {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 100px;
+  padding: 0.28rem 0.8rem;
+}
+
+/* ── Life raft ──────────────────────────────────────────────────────────── */
+
+.liferaft {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  animation: raft-spin-in 1s cubic-bezier(0.2, 0.8, 0.4, 1) 2s both;
+  filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.45));
+}
+
+@keyframes raft-spin-in {
+  from { opacity: 0; transform: scale(0.75) rotate(-8deg); }
+  to   { opacity: 1; transform: scale(1)    rotate(0deg); }
+}
+
+.liferaft-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Nav links — one per quadrant, centered in each quadrant ────────────── */
+/*                                                                           */
+/*  Ring geometry (SVG 260×260):                                             */
+/*    center = (130, 130)  inner-hole radius = 74px                         */
+/*    hole bounding box = 56..204 in both axes                               */
+/*    each quadrant bounding-box centre = 93px or 167px  →  36% / 64%       */
+/*                                                                           */
+/*  nth-child order: 1=About(TL) 2=Blog(TR) 3=Services(BL) 4=Contact(BR)   */
+
+.liferaft-nav {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.liferaft-link {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.36);
+  cursor: default;
+  user-select: none;
+  transition: color 0.2s;
+  line-height: 1;
+  pointer-events: auto;
+}
+
+/* About — top-left quadrant */
+.liferaft-link:nth-child(1) { top: 41%; left: 38%; }
+
+/* Blog — top-right quadrant */
+.liferaft-link:nth-child(2) { top: 41%; left: 62%; }
+
+/* Services — bottom-left quadrant */
+.liferaft-link:nth-child(3) { top: 59%; left: 36.5%; }
+
+/* Contact — bottom-right quadrant */
+.liferaft-link:nth-child(4) { top: 59%; left: 65%; }
+
+a.liferaft-link:hover { color: rgba(255, 255, 255, 0.58); }
+
+/* ── Copyright ──────────────────────────────────────────────────────────── */
+
+.home-copy {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.28);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .home-title          { font-size: 2.4rem; }
+  .home-sub            { font-size: 0.78rem; letter-spacing: 0.04em; }
+  .home-service-tag    { font-size: 0.6rem; padding: 0.22rem 0.65rem; }
+  .liferaft            { width: 220px; height: 220px; }
+  .liferaft-link       { font-size: 0.62rem; }
+  .home-copy           { font-size: 0.6rem; bottom: 1.2rem; }
+}

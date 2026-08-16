@@ -18,3 +18,9 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Environment secrets — never commit these
+.env
+.env.local
+cms/.env
+cms/.env.local
